@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "422576723086",
+    "firebase_url": "https://incomeexpensetrackerproject.firebaseio.com",
+    "project_id": "incomeexpensetrackerproject",
+    "storage_bucket": "incomeexpensetrackerproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422576723086:android:4c3b2c3f15bb2d3a",
+        "android_client_info": {
+          "package_name": "com.example.jitendrakumar.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422576723086-h7vhl5r2kjprak2so7fuqpj143bu3r8n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jitendrakumar.myapplication",
+            "certificate_hash": "55a1c0e881c04dabe3f39e0e37aa0e70695f5fe7"
+          }
+        },
+        {
+          "client_id": "422576723086-82l3h84pt4rluq7fgluafs2qa8jra3sf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIXzDuUfGA3AXr0Q0QM_VNSlS_eACrYC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422576723086-82l3h84pt4rluq7fgluafs2qa8jra3sf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

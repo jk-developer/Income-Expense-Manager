@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+
+    <item
+        android:id="@+id/nav_login"
+        android:icon="@drawable/login_user"
+        android:title="Login" />
+
+    <item android:id="@+id/nav_signup"
+        android:icon="@drawable/logout"
+        android:title="Sign up" />
+
+
+    <item
+        android:id="@+id/nav_about_app"
+        android:icon="@drawable/about_app"
+        android:title="About App" />
+
+
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/about"
+        android:title="About Developer" />
+
+
+    <item android:title="Reports">
+        <menu>
+            <item android:id="@+id/nav_income_report"
+                android:icon="@drawable/my_report"
+                android:title="Income Report"/>
+
+            <item android:id="@+id/nav_expense_report"
+                android:icon="@drawable/my_report"
+                android:title="Expense Report"/>
+
+            <item
+                android:id="@+id/nav_borrow_report"
+                android:icon="@drawable/my_report"
+                android:title="Borrow Report " />
+
+            <item
+                android:id="@+id/nav_lend_report"
+                android:icon="@drawable/my_report"
+                android:title="Lend Report " />
+
+        </menu>
+    </item>
+
+
+</menu>

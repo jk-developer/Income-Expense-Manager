@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/screen_area">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="hello"
+                android:textSize="20sp"
+                android:layout_centerInParent="true"
+                android:id="@+id/tvHello"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:background="@drawable/hellogradient"
+                android:textColor="@color/colorTexts"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="2dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/hometotal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="home page record"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:padding="3dp"
+                    android:layout_margin="5dp"
+                    android:id="@+id/tvHomeTitle"
+                    android:textColor="#000000"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/savingtotal"
+                    android:layout_margin="5dp"
+                    android:padding="3dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Income "
+                        android:textSize="18sp"
+                        android:padding="3dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:gravity="start"
+                        android:textColor="@color/colorTexts"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:padding="3dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2.5"
+                        android:gravity="start"
+                        android:textColor="@color/colorTexts"
+                        android:id="@+id/incomeTotal"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/expensetotal"
+                    android:layout_margin="5dp"
+                    android:padding="3dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Expense "
+                        android:textSize="18sp"
+                        android:padding="3dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:gravity="start"
+                        android:textColor="@color/colorTexts"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:padding="3dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2.5"
+                        android:gravity="start"
+                        android:textColor="@color/colorTexts"
+                        android:id="@+id/expenseTotal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/incometotal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="3dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Balance "
+                        android:textSize="18sp"
+                        android:padding="3dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:gravity="start"
+                        android:textColor="@color/colorTexts"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:padding="3dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2.5"
+                        android:gravity="start"
+                        android:textColor="@color/colorTexts"
+                        android:id="@+id/savingTotal"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/layout_corner"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:id="@+id/incomeLayout">
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/home_income"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"/>
+
+                    <TextView
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:text="Add Income"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:layout_marginBottom="18dp"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/layout_corner"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:id="@+id/expenseLayout">
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/home_income"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"/>
+
+                    <TextView
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:text="Add Expense"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:layout_marginBottom="18dp"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+</RelativeLayout>
