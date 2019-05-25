@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.jitendrakumar.myapplication.R;
 import com.example.jitendrakumar.myapplication.models.IncomeData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,6 +37,9 @@ public class AddIncomeFragment extends Fragment {
 
     public static final String TAG = "res";
     private DatabaseReference incomeDatabaseReference;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
 
     // TextView tvIncomeDate;
@@ -64,6 +69,8 @@ public class AddIncomeFragment extends Fragment {
         tvIncomeHintTime = (TextView) view.findViewById( R.id.tvIncomeHintTime );
 
         incomeDatabaseReference = FirebaseDatabase.getInstance().getReference("income");
+        firebaseAuth = FirebaseAuth.getInstance();
+         firebaseUser = firebaseAuth.getCurrentUser();
 
         Calendar cal = Calendar.getInstance();
         int year = cal.get( Calendar.YEAR );
@@ -109,14 +116,7 @@ public class AddIncomeFragment extends Fragment {
                 builder.setPositiveButton( "OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (which == -1) {
-
-                        } else {
-                            tvIncomeInput.setText( income[which].toString() );
-
-                        }
-
-
+                        builder.setCancelable( true );
                     }
                 } );
                 AlertDialog alertDialog = builder.create();
@@ -166,8 +166,10 @@ public class AddIncomeFragment extends Fragment {
         btnIncomeSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+           //  if(isLoggedIn())
                 addIncomeData();
+           //  else
+               //  Toast.makeText( getContext(), "Please First Login ", Toast.LENGTH_LONG ).show();
 
             }
         } );
@@ -176,10 +178,10 @@ public class AddIncomeFragment extends Fragment {
 
     private void addIncomeData()
     {
-        String amount = String.valueOf(etIncomeAmount.getText().toString().trim());
+        String amount = etIncomeAmount.getText().toString().trim();
         String date = tvIncomeDate.getText().toString().trim();
         String time = tvIncomeTime.getText().toString().trim();
-        String incomeType = tvIncomeType.getText().toString().trim();
+        String incomeType = tvIncomeInput.getText().toString().trim();
         String description = etIncomeDescription.getText().toString().trim();
 
         if(TextUtils.isEmpty( amount ))
@@ -208,9 +210,31 @@ public class AddIncomeFragment extends Fragment {
 
         String incomeId = incomeDatabaseReference.push().getKey();
         IncomeData incomeData = new IncomeData(incomeId, incomeType, amount, date, time, description );
-        incomeDatabaseReference.child(incomeId).setValue( incomeData );
+        incomeDatabaseReference.child( firebaseUser.getUid()).child(incomeId).setValue( incomeData );
         Toast.makeText( getContext(), "Income Data saved successfully..." , Toast.LENGTH_SHORT).show();
 
+    }
+
+    public boolean isLoggedIn()
+    {
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        final boolean[] temp = {false};
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
+            @Override
+            public  void  onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    Toast.makeText( getContext(), "user is : "+user.getUid(), Toast.LENGTH_SHORT ).show();
+                  temp[0] = true;
+                }
+            }
+
+        };
+        if(temp[0])
+            return true;
+        else
+            return false;
     }
 
 }

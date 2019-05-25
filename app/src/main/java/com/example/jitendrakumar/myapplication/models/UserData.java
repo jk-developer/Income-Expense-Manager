@@ -1,23 +1,23 @@
 package com.example.jitendrakumar.myapplication.models;
 
 public class UserData {
-    String userName;
-    String pass;
-    int id;
+    String userEmail;
+    String userPassword;
+    String userId;
 
-   public UserData(String userName, String pass, int id){
+   public UserData(String userName, String pass, String id){
 
-        this.userName=userName;
-        this.pass=pass;
-        this.id=id;
+        this.userEmail=userName;
+        this.userPassword=pass;
+        this.userId=id;
     }
 
     public String getUserName(){
-        return  userName;
+        return  userEmail;
     }
     public String getPass(){
-        return pass;
+        return userPassword;
     }
-    public int getId(){return id ;}
+    public String getId(){return userId ;}
 
 }

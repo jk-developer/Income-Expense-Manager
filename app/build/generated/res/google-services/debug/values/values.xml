@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">422576723086-82l3h84pt4rluq7fgluafs2qa8jra3sf.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://incomeexpensetrackerproject.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">422576723086</string>
+    <string name="google_api_key" translatable="false">AIzaSyAIXzDuUfGA3AXr0Q0QM_VNSlS_eACrYC0</string>
+    <string name="google_app_id" translatable="false">1:422576723086:android:4c3b2c3f15bb2d3a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAIXzDuUfGA3AXr0Q0QM_VNSlS_eACrYC0</string>
+    <string name="google_storage_bucket" translatable="false">incomeexpensetrackerproject.appspot.com</string>
+    <string name="project_id" translatable="false">incomeexpensetrackerproject</string>
+</resources>

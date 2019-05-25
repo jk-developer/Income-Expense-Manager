@@ -28,6 +28,7 @@ public class LoginFragment extends Fragment {
     private EditText etPassword;
     private Button btnLogin;
     private TextView tvRegister;
+    public static final String UID = "userId";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,6 +75,7 @@ public class LoginFragment extends Fragment {
     private void userLogin() {
         String email = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+
         if (TextUtils.isEmpty( email )) {
             Toast.makeText( getContext(), "Please enter email", Toast.LENGTH_SHORT ).show();
             //stoping the funcction further
@@ -92,13 +94,14 @@ public class LoginFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
-
+                String userId = firebaseAuth.getUid();
                 if (task.isSuccessful()) {
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     Fragment mFrag = new HomePageFragment();
                     ft.replace( R.id.screen_area, mFrag );
                     ft.commit();
                 }
+
             }
         } );
     }

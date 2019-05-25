@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.jitendrakumar.myapplication.R;
 import com.example.jitendrakumar.myapplication.models.ExpenseData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,7 +29,9 @@ import java.util.Calendar;
 
 public class AddExpenseFragment extends Fragment {
 
-    DatabaseReference expenseDatabaseReference;
+   private DatabaseReference expenseDatabaseReference;
+   private FirebaseAuth firebaseAuth;
+   private FirebaseUser firebaseUser;
 
     EditText etExpenseAmount, etExpenseDescription;
     TextView tvExpenseDate, tvExpenseTime, tvHintExpenseDate, tvExpenseType, tvExpenseHintType, tvExpenseHintTime;
@@ -52,6 +56,8 @@ public class AddExpenseFragment extends Fragment {
         tvExpenseHintTime = (TextView) view.findViewById( R.id.tvExpenseHintTime );
 
         expenseDatabaseReference = FirebaseDatabase.getInstance().getReference("expense");
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         Calendar c = Calendar.getInstance();
         int year = c.get( Calendar.YEAR );
@@ -200,7 +206,7 @@ public class AddExpenseFragment extends Fragment {
 
             String expenseId = expenseDatabaseReference.push().getKey();
             ExpenseData incomeData = new ExpenseData(expenseId, expenseType, amount, date, time, description );
-            expenseDatabaseReference.child(expenseId).setValue( incomeData );
+            expenseDatabaseReference.child( firebaseUser.getUid() ).child(expenseId).setValue( incomeData );
             Toast.makeText( getContext(), "Expense Data saved successfully..." , Toast.LENGTH_SHORT).show();
 
         }

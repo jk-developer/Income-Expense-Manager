@@ -1,9 +1,16 @@
 package com.example.jitendrakumar.myapplication.models;
 
 public class ExpenseData {
+
+
     String expenseId;
     String expenseType;
     String expenseAmount;
+
+    public ExpenseData()
+    {
+
+    }
 
     public String getExpenseDesc() {
         return expenseDesc;

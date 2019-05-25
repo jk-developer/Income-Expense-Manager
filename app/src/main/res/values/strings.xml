@@ -18,4 +18,16 @@
     <string name="err_msg_password">Enter the password!!!</string>
     <string name="err_msg_mobile">Enter the valid Mobile!!!</string>
 
+    <string-array name="days_array">
+        <item>Between two Dates</item>
+        <item>Between two Months</item>
+        <item>Income Type</item>
+        <item>Bar Graph</item>
+
+    </string-array>
+    private CharSequence income[] = {"Regular Salary", "Buissness Profits", "Rental Income",
+    "Savings", "Gifts", "Pocket Money", " Investments ", "Governmental grants", "Retirement Income",
+    "Bonus", "Other"};
+
+
 </resources>

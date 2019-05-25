@@ -33,23 +33,23 @@
 
     <item android:title="Reports">
         <menu>
-            <item android:id="@+id/nav_income_report"
+            <item android:id="@+id/nav_income_list"
                 android:icon="@drawable/my_report"
-                android:title="Income Report"/>
+                android:title="Income List"/>
 
-            <item android:id="@+id/nav_expense_report"
+            <item android:id="@+id/nav_expense_list"
                 android:icon="@drawable/my_report"
-                android:title="Expense Report"/>
-
-            <item
-                android:id="@+id/nav_borrow_report"
-                android:icon="@drawable/my_report"
-                android:title="Borrow Report " />
+                android:title="Expense List"/>
 
             <item
-                android:id="@+id/nav_lend_report"
+                android:id="@+id/nav_income_report"
                 android:icon="@drawable/my_report"
-                android:title="Lend Report " />
+                android:title="Income Report " />
+
+            <item
+                android:id="@+id/nav_expense_report"
+                android:icon="@drawable/my_report"
+                android:title="Expense Report " />
 
         </menu>
     </item>

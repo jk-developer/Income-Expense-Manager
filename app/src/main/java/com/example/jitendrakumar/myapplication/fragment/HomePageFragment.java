@@ -15,13 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.myapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
 
 public class HomePageFragment extends Fragment {
     TextView tvHello;
     public String id;
-    LinearLayout todoLayout, incomeLayout, expenseLayout, incomeReportLayout, expenseReportLayout, borrowReportLayout, lendReportLayout, loginLayout, borrowLayout, lendLayout, aboutLayout;
+    private FirebaseAuth firebaseAuth;
+    LinearLayout  incomeLayout, expenseLayout, incomeReportLayout, expenseReportLayout, borrowReportLayout, lendReportLayout, loginLayout, borrowLayout, lendLayout, aboutLayout;
 
     TextView incomeTotal, expenseTotal, savingTotal, tvHomeTitle, homeTime, homeIncome;
 
@@ -29,21 +33,32 @@ public class HomePageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.content_main, container, false );
+        View view = inflater.inflate( R.layout.fragment_home_page, container, false );
 
         tvHello = (TextView) view.findViewById( R.id.tvHello );
         incomeLayout = (LinearLayout) view.findViewById( R.id.incomeLayout );
         expenseLayout = (LinearLayout) view.findViewById( R.id.expenseLayout );
         incomeTotal = (TextView) view.findViewById( R.id.incomeTotal );
         expenseTotal = (TextView) view.findViewById( R.id.expenseTotal );
-        savingTotal = (TextView) view.findViewById( R.id.savingTotal );
         tvHomeTitle = (TextView) view.findViewById( R.id.tvHomeTitle );
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         Calendar cal = Calendar.getInstance();
         final int year = cal.get( Calendar.YEAR );
         final int month = cal.get( Calendar.MONTH );
         final int day = cal.get( Calendar.DAY_OF_MONTH );
+
+        if(user != null)
+        {
+            tvHello.setText( "Welcome  "+user.getEmail() );
+            tvHello.setVisibility( View.VISIBLE );
+        }
+        else
+        {
+            tvHello.setVisibility( View.INVISIBLE );
+        }
 
 
         incomeTotal.setOnClickListener( new View.OnClickListener() {
