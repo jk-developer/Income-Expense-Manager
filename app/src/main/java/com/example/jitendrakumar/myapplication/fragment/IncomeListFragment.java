@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import com.example.jitendrakumar.myapplication.R;
 import com.example.jitendrakumar.myapplication.adapters.IncomeListAdapter;
 import com.example.jitendrakumar.myapplication.models.IncomeData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @SuppressLint("ValidFragment")
 public class IncomeListFragment extends Fragment {
@@ -31,6 +34,8 @@ public class IncomeListFragment extends Fragment {
     private ArrayList<IncomeData> incomeList;
     private DatabaseReference incomedbRef;
     private IncomeListAdapter incomeListAdapter;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
         @Nullable
@@ -41,7 +46,10 @@ public class IncomeListFragment extends Fragment {
             progressDialog = new ProgressDialog( getContext() );
 
             incomeList = new ArrayList<>(  );
-            incomedbRef = FirebaseDatabase.getInstance().getReference("income");
+
+            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseUser = firebaseAuth.getCurrentUser();
+            incomedbRef = FirebaseDatabase.getInstance().getReference("income").child( firebaseUser.getUid() );
             rvIncomeList.setLayoutManager( new LinearLayoutManager( getContext() ) );
 
             progressDialog.setMessage( "Fetching Income data..." );
@@ -56,6 +64,7 @@ public class IncomeListFragment extends Fragment {
                         IncomeData incomeData = incomeSnapshop.getValue( IncomeData.class );
                         incomeList.add( incomeData );
                     }
+                    Collections.reverse( incomeList );
                     incomeListAdapter = new IncomeListAdapter( incomeList, getContext() );
                     progressDialog.dismiss();
                     rvIncomeList.setAdapter(incomeListAdapter  );

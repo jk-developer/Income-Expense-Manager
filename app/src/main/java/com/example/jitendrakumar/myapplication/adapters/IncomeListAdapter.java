@@ -40,10 +40,13 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
     public void onBindViewHolder(IncomeListViewHolder holder, int position) {
           IncomeData incomeData = incomeDataArrayList.get( position );
           holder.tvIncomeReportAmount.setText( incomeData.getIncomeAmount() );
-        holder.tvIncomeReportTime.setText( incomeData.getIncomeTime());
-        holder.tvIncomeReportDate.setText( incomeData.getIncomeDate());
-        holder.tvIncomeReportType.setText( incomeData.getIncomeType());
-        holder.tvIncomeReportDesc.setText( incomeData.getIncomeDesc());
+          holder.tvIncomeReportTime.setText( incomeData.getIncomeTime());
+          holder.tvIncomeReportDate.setText( incomeData.getIncomeDate());
+          holder.tvIncomeReportType.setText( incomeData.getIncomeType());
+          if(incomeData.getIncomeDesc() == null)
+              holder.tvIncomeReportDesc.setText( "No Description".toString().trim());
+          else
+          holder.tvIncomeReportDesc.setText( incomeData.getIncomeDesc());
     }
 
     @Override

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TaskListActivity"
+    android:orientation="vertical">
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="5dp"
+     android:orientation="vertical"
+     android:layout_marginRight="5dp"
+     android:layout_marginBottom="10dp">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="2dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/etTask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Task "
+            android:textSize="18sp"
+            android:textColor="#3d0fbf"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="text"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/border">
+        <TextView
+            android:id="@+id/tvTaskDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:hint="DD/MM/YYYY"
+            android:textColor="#3d0fbf"
+            android:inputType="date"
+            android:padding="5dp"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:id="@+id/tvHintTaskDate"/>
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/mdtp_button_color"
+            android:layout_weight="1"
+            android:layout_marginRight="0dp"
+            android:padding="5dp"
+            android:text="Add" />
+
+    </LinearLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1.3dp"
+         android:background="@android:color/holo_blue_dark"/>
+
+ </LinearLayout>
+
+       <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rvTaskList">
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</LinearLayout>

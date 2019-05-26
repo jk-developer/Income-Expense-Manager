@@ -17,7 +17,8 @@
     <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/logout"
-        android:title="Log out" />
+        android:title="Log out"
+        android:visible="true"/>
 
     <item
         android:id="@+id/action_reset"

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.jitendrakumar.myapplication.R;
 import com.example.jitendrakumar.myapplication.fragment.HomePageFragment;
 import com.example.jitendrakumar.myapplication.fragment.LoginFragment;
+import com.example.jitendrakumar.myapplication.fragment.SignupFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -29,8 +30,8 @@ public class StartActivity extends AppCompatActivity {
 
     EditText etemail, etpassword;
     private TextInputLayout inputLayoutEmail, inputLayoutPassword;
-    Button btnSignup;
-    TextView tvLogin;
+    Button btnLogin;
+    TextView tvRegister;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -42,16 +43,13 @@ public class StartActivity extends AppCompatActivity {
         inputLayoutEmail = (TextInputLayout) findViewById( R.id.input_layout_email );
         inputLayoutPassword = (TextInputLayout) findViewById( R.id.input_layout_password );
 
-        etemail = (EditText) findViewById( R.id.email );
-        etpassword = (EditText) findViewById( R.id.password );
-        btnSignup = (Button) findViewById( R.id.btnSignup );
-        tvLogin = (TextView) findViewById( R.id.tvLogin );
+        etemail = (EditText) findViewById( R.id.etemail );
+        etpassword = (EditText) findViewById( R.id.etpassword );
+        btnLogin = (Button) findViewById( R.id.btnLogin );
+        tvRegister = (TextView) findViewById( R.id.tvRegister);
 
         progressDialog = new ProgressDialog( StartActivity.this);
         firebaseAuth = FirebaseAuth.getInstance();
-
-        // etemail.addTextChangedListener( new MyTextWatcher( etemail ) );
-        //  etpassword.addTextChangedListener( new MyTextWatcher( etpassword ) );
 
         etpassword.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
         etemail.setHintTextColor( getResources().getColor( R.color.colorTexts ) );
@@ -59,10 +57,10 @@ public class StartActivity extends AppCompatActivity {
         etemail.setTextColor( Color.parseColor( "#00ff00" ) );
         etpassword.setTextColor( Color.parseColor( "#00ff00" ) );
 
-        btnSignup.setOnClickListener( new View.OnClickListener() {
+        btnLogin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerUser();
+                userLogin();
             }
         } );
 
@@ -76,56 +74,49 @@ public class StartActivity extends AppCompatActivity {
 
         }
 
-        tvLogin.setOnClickListener( new View.OnClickListener() {
+        tvRegister.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                Fragment mFrag = new LoginFragment();
-                ft.replace(R.id.screen_area, mFrag);
-                ft.addToBackStack( null );
-                ft.commit();
+                Intent intent = new Intent( StartActivity.this, MainActivity.class );
+                intent.addFlags( intent.FLAG_ACTIVITY_CLEAR_TOP );
+                intent.addFlags( intent.FLAG_ACTIVITY_CLEAR_TASK );
+                startActivity( intent );
+                Toast.makeText( StartActivity.this, " clicked", Toast.LENGTH_SHORT ).show();
             }
         } );
 
 
     }
 
-    private void registerUser() {
+    private void userLogin() {
         String email = etemail.getText().toString().trim();
         String password = etpassword.getText().toString().trim();
 
         if (TextUtils.isEmpty( email )) {
-            Toast.makeText( this, "Please enter email", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( StartActivity.this, "Please enter email", Toast.LENGTH_SHORT ).show();
             //stoping the funcction further
             return;
         }
 
         if (TextUtils.isEmpty( password )) {
-            Toast.makeText( this, "Please enter Password", Toast.LENGTH_SHORT ).show();
+            Toast.makeText(StartActivity.this, "Please enter Password", Toast.LENGTH_SHORT ).show();
             return;
         }
 
-        // if validates are ok
-        // then we will show a progressbar
-        progressDialog.setMessage( "Registering User..." );
+        progressDialog.setMessage( "Signing in please wait..." );
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( StartActivity.this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword( email, password ).addOnCompleteListener( StartActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    progressDialog.dismiss();
-                    Intent intent = new Intent( StartActivity.this, MainActivity.class );
-                    startActivity( intent );
-
-                }
-                else {
-                    Toast.makeText( StartActivity.this, "Something went wrong ? try again", Toast.LENGTH_SHORT ).show();
+                progressDialog.dismiss();
+                String userId = firebaseAuth.getUid();
+                if (task.isSuccessful()) {
+                    startActivity( new Intent( StartActivity.this, MainActivity.class ) );
                 }
 
             }
-        });
+        } );
     }
 
 }

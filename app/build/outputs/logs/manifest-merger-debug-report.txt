@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
 MERGED from [com.wdullaer:materialdatetimepicker:3.6.2] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\materialdatetimepicker-3.6.2.aar\7eeefe33a2b850ab8ed7c1cbdd85d103\AndroidManifest.xml:17:1-30:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\a14218bf4e97b451d804d526f3c83ff6\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\c91282de5d8358c906da4348dec67066\AndroidManifest.xml:17:1-22:12
@@ -39,20 +39,20 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Jitendra Kumar\.grad
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\5bc4405765742f4af54391c715c6333b\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f839eb08abc9dab98cb1b08f524cbd29\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\a153a140ddf45609dd88ea4a03371fc1\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
 	package
 		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:3:5-54
 		INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
 		INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:1-33:12
 		INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:2:11-69
@@ -69,7 +69,7 @@ MERGED from [com.google.firebase:firebase-iid:11.8.0] C:\Users\Jitendra Kumar\.g
 	android:name
 		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:7:5-30:19
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:7:5-31:19
 MERGED from [com.wdullaer:materialdatetimepicker:3.6.2] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\materialdatetimepicker-3.6.2.aar\7eeefe33a2b850ab8ed7c1cbdd85d103\AndroidManifest.xml:28:5-20
 MERGED from [com.wdullaer:materialdatetimepicker:3.6.2] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\materialdatetimepicker-3.6.2.aar\7eeefe33a2b850ab8ed7c1cbdd85d103\AndroidManifest.xml:28:5-20
 MERGED from [com.google.firebase:firebase-database:17.0.0] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\firebase-database-17.0.0.aar\7bc35401c9dfb09ab8966c7644ea63fa\AndroidManifest.xml:28:5-34:19
@@ -103,51 +103,61 @@ MERGED from [com.google.firebase:firebase-analytics-impl-license:11.8.0] C:\User
 MERGED from [com.google.firebase:firebase-iid-license:11.8.0] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-11.8.0.aar\09b707bfa373d6b12f36777a2270dd06\AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-iid-license:11.8.0] C:\Users\Jitendra Kumar\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-11.8.0.aar\09b707bfa373d6b12f36777a2270dd06\AndroidManifest.xml:5:5-20
 	android:supportsRtl
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:10:9-41
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:11:9-47
 	android:roundIcon
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:11:9-54
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:12:9-54
 	android:icon
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:9:9-43
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:10:9-43
 	android:allowBackup
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:8:9-35
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:13:9-40
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:14:9-40
+	android:name
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:8:9-37
 activity#com.example.jitendrakumar.myapplication.activity.MainActivity
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:14:9-23:20
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:15:9-24:20
 	android:label
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:16:13-45
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:17:13-45
 	android:theme
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:17:13-56
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:18:13-56
 	android:name
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:15:13-50
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:16:13-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:18:13-22:29
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:19:17-69
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:19:25-66
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:21:17-77
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:22:27-74
 activity#com.example.jitendrakumar.myapplication.activity.IncomeBarChartActivity
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:24:9-69
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:25:9-69
 	android:name
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:24:19-66
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:25:19-66
+activity#com.example.jitendrakumar.myapplication.activity.ExpenseBarchartActivity
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:26:9-70
+	android:name
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:26:19-67
 activity#com.example.jitendrakumar.myapplication.activity.IncomeItemActivity
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:25:9-65
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:27:9-65
 	android:name
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:25:19-62
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:27:19-62
 activity#com.example.jitendrakumar.myapplication.activity.ExpenseItemActivity
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:26:9-66
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:28:9-66
 	android:name
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:26:19-63
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:28:19-63
 activity#com.example.jitendrakumar.myapplication.activity.StartActivity
-ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:27:9-29:20
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:29:9-69
 	android:name
-		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:27:19-57
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:29:19-57
+activity#com.example.jitendrakumar.myapplication.activity.TaskListActivity
+ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:30:9-72
+	android:name
+		ADDED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml:30:19-60
 uses-sdk
 INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Jitendra Kumar\Desktop\MyApplication\app\src\main\AndroidManifest.xml

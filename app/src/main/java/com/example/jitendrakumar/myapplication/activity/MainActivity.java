@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jitendrakumar.myapplication.R;
@@ -31,17 +33,35 @@ import com.example.jitendrakumar.myapplication.fragment.IncomeListFragment;
 import com.example.jitendrakumar.myapplication.fragment.IncomeReportFragment;
 import com.example.jitendrakumar.myapplication.fragment.LoginFragment;
 import com.example.jitendrakumar.myapplication.fragment.SignupFragment;
+import com.example.jitendrakumar.myapplication.models.ExpenseData;
+import com.example.jitendrakumar.myapplication.models.IncomeData;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private LinearLayout incomeLayout, expenseLayout;
     private Toolbar toolbar;
+    private float ans = (float) 0.0;
+   TextView tvHello, incomeTotal, expenseTotal;
     private CharSequence charSequence[] = {"Income", "Expense"};
     boolean[] Checked = new boolean[charSequence.length];
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private ArrayList<IncomeData> incomeList;
+
+    private String userid;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,33 +80,78 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById( R.id.nav_view );
         navigationView.setNavigationItemSelectedListener( this );
 
-        incomeLayout = findViewById( R.id.incomeLayout );
+        showHome();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+      //  userid = firebaseUser.getUid();
+
+        incomeLayout = findViewById( R.id.incomeLayout);
         expenseLayout = findViewById( R.id.expenseLayout );
+        tvHello = findViewById(  R.id.tvHello);
+        incomeTotal = findViewById( R.id.incomeTotal );
+        expenseTotal = findViewById( R.id.expenseTotal );
+
+        incomeTotal.setText( getAllIncome().toString() );
+        expenseTotal.setText( getAllExpense().toString() );
+
+
+        if(firebaseUser != null)
+        {
+            tvHello.setText( "Welcome  "+firebaseUser.getEmail() );
+            tvHello.setVisibility( View.VISIBLE );
+
+        }
+        else
+        {
+            tvHello.setText( "You are not logged in or registered " );
+            tvHello.setVisibility( View.VISIBLE );
+        }
+
+
+
 
         incomeLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( MainActivity.this, "add income", Toast.LENGTH_SHORT ).show();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                Fragment mFrag = new AddIncomeFragment();
-                ft.replace(R.id.screen_area, mFrag);
-                ft.addToBackStack( null );
-                ft.commit();
+                if(firebaseUser == null)
+                {
+                    Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+                }
+                else
+                {
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    Fragment mFrag = new AddIncomeFragment();
+                    ft.replace(R.id.screen_area, mFrag);
+                    ft.addToBackStack( null );
+                    ft.commit();
+                }
+
             }
         } );
 
         expenseLayout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                Fragment mFrag = new AddExpenseFragment();
-                ft.replace(R.id.screen_area, mFrag);
-                ft.addToBackStack( null );
-                ft.commit();
+                if(firebaseUser == null)
+                {
+                    Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+                }
+                else {
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    Fragment mFrag = new AddExpenseFragment();
+                    ft.replace( R.id.screen_area, mFrag );
+                    ft.addToBackStack( null );
+                    ft.commit();
+                }
             }
         } );
 
+
+
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -94,8 +159,17 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
-            super.onBackPressed();
+            if(fragment instanceof HomePageFragment)
+            {
+                super.onBackPressed();
+             }
+             else
+            {
+                showHome();
+            }
+
         }
+
     }
 
     @Override
@@ -103,6 +177,19 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate( R.menu.main, menu );
         return true;
+    }
+
+    private void showHome()
+    {
+        fragment = new HomePageFragment();
+        if(fragment != null)
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+
+            ft.replace( R.id.screen_area, fragment ).commit();
+
+        }
     }
 
     @Override
@@ -150,65 +237,85 @@ public class MainActivity extends AppCompatActivity
                 return true;
 
             case R.id.nav_logout:
+                if(firebaseUser == null)
+                {
+                    Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+                }
+                else
+                {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent( MainActivity.this, StartActivity.class );
+                    intent.addFlags( intent.FLAG_ACTIVITY_CLEAR_TOP );
+                    intent.addFlags( intent.FLAG_ACTIVITY_CLEAR_TASK );
+                    startActivity( intent );
+                    Toast.makeText( MainActivity.this, "Logged out successfully!!!" , Toast.LENGTH_SHORT).show();
 
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText( MainActivity.this, "Logged out successfully!!!" , Toast.LENGTH_SHORT).show();
+                }
+
                 return true;
 
             case R.id.action_reset:
-                Toast.makeText( MainActivity.this, "Reset is clicked" , Toast.LENGTH_SHORT).show();
-
-                for (int i = 0; i < charSequence.length; i++) {
-                    Checked[i] = false;
+                if(firebaseUser == null)
+                {
+                    Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
                 }
-                final AlertDialog.Builder builderReset = new AlertDialog.Builder( MainActivity.this );
-                builderReset.setIcon( R.drawable.ic_reset );
-                builderReset.setTitle( "Choose " );
-                builderReset.setMultiChoiceItems( charSequence, new boolean[charSequence.length], new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        Checked[which] = isChecked;
+                else {
 
+                    Toast.makeText( MainActivity.this, "Reset is clicked", Toast.LENGTH_SHORT ).show();
+
+                    for (int i = 0; i < charSequence.length; i++) {
+                        Checked[i] = false;
                     }
-                } );
+                    final AlertDialog.Builder builderReset = new AlertDialog.Builder( MainActivity.this );
+                    builderReset.setIcon( R.drawable.ic_reset );
+                    builderReset.setTitle( "Choose " );
+                    builderReset.setMultiChoiceItems( charSequence, new boolean[charSequence.length], new DialogInterface.OnMultiChoiceClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                            Checked[which] = isChecked;
 
-                builderReset.setPositiveButton( "Reset", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (Checked[0] == false && Checked[1] == false ) {
-                            Toast.makeText( MainActivity.this, "First Choose some items ", Toast.LENGTH_SHORT ).show();
-                            builderReset.setCancelable( false );
-                        } else {
-                            if (Checked[0] == true) {
-                                deleteAllIncomeData();
-                            }
-                            if (Checked[1] == true) {
-                                  deleteAllExpenseData();
-                            }
-
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace( R.id.screen_area, new HomePageFragment())
-                                    .addToBackStack( null )
-                                    .commit();
-                            toolbar.setTitle( "Income Expense Tracker" );
-
-                            Toast.makeText( MainActivity.this, "Selected Items records are deleted!!!", Toast.LENGTH_SHORT ).show();
                         }
-                    }
-                } );
+                    } );
 
-                builderReset.setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        for (int j = 0; j < charSequence.length; j++)
-                            Checked[j] = false;
+                    builderReset.setPositiveButton( "Reset", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (Checked[0] == false && Checked[1] == false) {
+                                Toast.makeText( MainActivity.this, "First Choose some items ", Toast.LENGTH_SHORT ).show();
+                                builderReset.setCancelable( false );
+                            } else {
+                                if (Checked[0] == true) {
+                                    deleteAllIncomeData();
+                                }
+                                if (Checked[1] == true) {
+                                    deleteAllExpenseData();
+                                }
 
-                        builderReset.setCancelable( true );
-                    }
-                } );
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace( R.id.screen_area, new HomePageFragment() )
+                                        .addToBackStack( null )
+                                        .commit();
+                                toolbar.setTitle( "Income Expense Tracker" );
 
-                AlertDialog alertDialogReset = builderReset.create();
-                alertDialogReset.show();
+                                Toast.makeText( MainActivity.this, "Selected Items records are deleted!!!", Toast.LENGTH_SHORT ).show();
+                            }
+                        }
+                    } );
+
+                    builderReset.setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            for (int j = 0; j < charSequence.length; j++)
+                                Checked[j] = false;
+
+                            builderReset.setCancelable( true );
+                        }
+                    } );
+
+                    AlertDialog alertDialogReset = builderReset.create();
+                    alertDialogReset.show();
+
+                }
                 return true;
 
             default:
@@ -218,12 +325,14 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /// create a fragment
+    Fragment fragment = null;
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        /// create a fragment
-        Fragment fragment = null;
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -231,7 +340,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
             fragment = new HomePageFragment();
-            toolbar.setTitle( "Income Expense Tracker" );
         }
         else if (id == R.id.nav_login) {
             fragment = new LoginFragment();
@@ -250,20 +358,56 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle( "About Developer" );
         }
         else if (id == R.id.nav_income_list) {
-            fragment = new IncomeListFragment();
-            toolbar.setTitle( "Income List" );
+            if(firebaseUser == null)
+            {
+                Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+            }
+            else
+            {
+                fragment = new IncomeListFragment();
+                toolbar.setTitle( "Income List" );
+            }
+
         }
         else if (id == R.id.nav_expense_list) {
-            fragment = new ExpenseListFragment();
-            toolbar.setTitle( "Expense List" );
+            if(firebaseUser == null)
+            {
+                Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+            }
+            else {
+                fragment = new ExpenseListFragment();
+                toolbar.setTitle( "Expense List" );
+            }
         }
         else if (id == R.id.nav_income_report) {
-            fragment = new IncomeReportFragment();
-            toolbar.setTitle( "Income Report" );
+            if(firebaseUser == null)
+            {
+                Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+            }
+            else {
+                startActivity( new Intent( MainActivity.this, IncomeBarChartActivity.class ) );
+                toolbar.setTitle( "Income Report" );
+            }
         }
         else if (id == R.id.nav_expense_report) {
-           // fragment = new ;
-            toolbar.setTitle( "Expense Report" );
+            if(firebaseUser == null)
+            {
+                Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+            }
+            else {
+                startActivity( new Intent(MainActivity.this, ExpenseBarchartActivity.class ) );
+                toolbar.setTitle( "Expense Report" );
+            }
+        }
+        else if(id == R.id.nav_add_task){
+            if(firebaseUser == null)
+            {
+                Toast.makeText( MainActivity.this, "Sorry you are not logged in", Toast.LENGTH_SHORT ).show();
+            }
+            else {
+                Intent intent = new Intent( this, TaskListActivity.class );
+                startActivity( intent );
+            }
         }
 
         if(fragment != null)
@@ -271,7 +415,7 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
 
-            ft.replace( R.id.screen_area, fragment ).addToBackStack( null ).commit();
+            ft.replace( R.id.screen_area, fragment ).commit();
 
         }
 
@@ -287,9 +431,55 @@ public class MainActivity extends AppCompatActivity
         ref.removeValue();
     }
 
-    public void deleteAllExpenseData()
+    private void deleteAllExpenseData()
     {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("expense");
         ref.removeValue();
+    }
+
+    private String getAllIncome()
+    {
+
+        DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference("income");
+        firebaseDatabase.child( firebaseUser.getUid() ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot income: dataSnapshot.getChildren())
+                {
+                    IncomeData incomeData = income.getValue( IncomeData.class );
+                     ans = ans + Float.valueOf( incomeData.getIncomeAmount() );
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+        return String.valueOf( ans );
+    }
+
+    private String getAllExpense()
+    {
+
+        DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference("expense");
+        firebaseDatabase.child( firebaseUser.getUid() ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot expense: dataSnapshot.getChildren())
+                {
+                    ExpenseData expenseData = expense.getValue( ExpenseData.class );
+                   // Toast.makeText( MainActivity.this, "expense"+ expenseData.getExpenseAmount(), Toast.LENGTH_SHORT).show();
+                    ans = ans + Float.valueOf( expenseData.getExpenseAmount() );
+                    Toast.makeText( MainActivity.this, "expense"+ String.valueOf( ans ), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+        return String.valueOf( ans );
     }
 }
